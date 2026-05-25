@@ -16,10 +16,6 @@ RUN apt-get update && apt-get install -y \
 # Apache Mod_Rewrite aktif ediyoruz (Laravel URL yapısı için şart)
 RUN a2enmod rewrite
 
-# Render'ın dinamik port ataması için Apache'yi ayarlıyoruz
-RUN sed -i "s/Listen 80/Listen \${PORT:-80}/g" /etc/apache2/ports.conf
-RUN sed -i "s/:80/:\${PORT:-80}/g" /etc/apache2/sites-available/000-default.conf
-
 # Apache varsayılan dizinini Laravel'in "public" klasörüne yönlendiriyoruz
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
@@ -39,3 +35,6 @@ RUN composer install --optimize-autoloader --no-dev
 
 # Storage ve Cache klasörlerine yazma izni veriyoruz
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Konteynerın 80 portundan dışarı açılacağını belirtiyoruz
+EXPOSE 80
