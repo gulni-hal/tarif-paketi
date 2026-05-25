@@ -100,17 +100,3 @@ Route::middleware([\App\Http\Middleware\IsAdmin::class])->prefix('admin')->group
     Route::get('/mesajlar', [\App\Http\Controllers\AdminController::class, 'messages'])->name('admin.messages');
     Route::post('/mesaj-sil/{id}', [\App\Http\Controllers\AdminController::class, 'deleteMessage'])->name('admin.message.delete');
 });
-
-Route::get('/sistemi-kur-123', function () {
-    try {
-        // 1. Veritabanı tablolarını zorla (force) oluşturur
-        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-        
-        // 2. Resimlerin görünmesi için public klasörünü bağlar
-        \Illuminate\Support\Facades\Artisan::call('storage:link');
-        
-        return 'Harika! Veritabanı tabloları oluşturuldu ve resim yolları bağlandı. Artık ana sayfaya dönebilirsiniz.';
-    } catch (\Exception $e) {
-        return 'Bir hata oluştu: ' . $e->getMessage();
-    }
-});
