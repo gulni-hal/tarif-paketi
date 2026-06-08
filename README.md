@@ -358,9 +358,9 @@ graph TD
 
 ```
 ## Canlı Gösterim
-Projenin canlı gösterimi: [Tarif Paketi](https://github.com/gulni-hal/tarif-paketi)
+Projenin canlı gösterimi: [Tarif Paketi](https://tarif-paketi-production.up.railway.app/)
 
-Link olarak: https://github.com/gulni-hal/tarif-paketi
+Link olarak: https://tarif-paketi-production.up.railway.app/
 
 ---
 
